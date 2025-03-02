@@ -2,9 +2,9 @@
 
 A system for efficiently ingesting and querying log data with a user-friendly interface.
 
-![Go CI/CD](https://github.com/[username]/log-ingestor/actions/workflows/go.yml/badge.svg)
-![Lint](https://github.com/[username]/log-ingestor/actions/workflows/lint.yml/badge.svg)
-![Docker](https://github.com/[username]/log-ingestor/actions/workflows/docker.yml/badge.svg)
+![Go CI/CD](https://github.com/tacheshun/log-ingestor/actions/workflows/go.yml/badge.svg)
+![Lint](https://github.com/tacheshun/log-ingestor/actions/workflows/lint.yml/badge.svg)
+![Docker](https://github.com/tacheshun/log-ingestor/actions/workflows/docker.yml/badge.svg)
 
 ## Features
 
@@ -109,8 +109,8 @@ docker build -t log-ingestor .
 To run the application using the Docker image from GitHub Container Registry:
 
 ```bash
-docker pull ghcr.io/[username]/log-ingestor:latest
-docker run -p 3000:3000 -e MONGODB_URI=mongodb://host.docker.internal:27017 ghcr.io/[username]/log-ingestor:latest
+docker pull ghcr.io/tacheshun/log-ingestor:latest
+docker run -p 3000:3000 -e MONGODB_URI=mongodb://host.docker.internal:27017 ghcr.io/tacheshun/log-ingestor:latest
 ```
 
 ## API Endpoints
