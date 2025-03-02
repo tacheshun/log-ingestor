@@ -95,8 +95,8 @@ func randomString(length int) string {
 }
 
 func main() {
-	// Seed the random number generator
-	rand.Seed(time.Now().UnixNano())
+	// No need to seed the random number generator in Go 1.20+
+	// The math/rand package is automatically seeded now
 
 	// Number of logs to generate
 	numLogs := 100

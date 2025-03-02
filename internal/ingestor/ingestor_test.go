@@ -2,6 +2,7 @@ package ingestor
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"log-ingestor/internal/database"
 	"log-ingestor/internal/models"
@@ -120,8 +121,15 @@ func TestQueryLogs(t *testing.T) {
 		},
 	}
 
-	mockDB.InsertLog(nil, log1)
-	mockDB.InsertLog(nil, log2)
+	// Use context.TODO() instead of nil
+	ctx := context.TODO()
+	// Check error returns
+	if err := mockDB.InsertLog(ctx, log1); err != nil {
+		t.Fatalf("Failed to insert log1: %v", err)
+	}
+	if err := mockDB.InsertLog(ctx, log2); err != nil {
+		t.Fatalf("Failed to insert log2: %v", err)
+	}
 
 	// Test query with no filters
 	req, _ := http.NewRequest("GET", "/logs", nil)
