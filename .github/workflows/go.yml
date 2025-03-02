@@ -30,6 +30,16 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
+    - name: Verify dependencies
+      run: |
+        go mod tidy
+        go mod verify
+        # Make sure go.sum is up to date
+        if [ -n "$(git status --porcelain go.sum)" ]; then
+          echo "go.sum is out of date, please run 'go mod tidy' and commit changes"
+          exit 1
+        fi
+
     - name: Get dependencies
       run: go mod download
 
@@ -59,6 +69,11 @@ jobs:
 
     - name: Check out code
       uses: actions/checkout@v3
+
+    - name: Verify dependencies
+      run: |
+        go mod tidy
+        go mod verify
 
     - name: Get dependencies
       run: go mod download
