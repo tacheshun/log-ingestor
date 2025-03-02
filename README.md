@@ -2,6 +2,10 @@
 
 A system for efficiently ingesting and querying log data with a user-friendly interface.
 
+![Go CI/CD](https://github.com/[username]/log-ingestor/actions/workflows/go.yml/badge.svg)
+![Lint](https://github.com/[username]/log-ingestor/actions/workflows/lint.yml/badge.svg)
+![Docker](https://github.com/[username]/log-ingestor/actions/workflows/docker.yml/badge.svg)
+
 ## Features
 
 - HTTP-based log ingestion on port 3000
@@ -63,6 +67,50 @@ PORT=3000
 MONGODB_URI=mongodb://localhost:27017
 DB_NAME=log_ingestor
 COLLECTION_NAME=logs
+```
+
+## CI/CD with GitHub Actions
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+### Workflows
+
+1. **Go CI/CD** (`.github/workflows/go.yml`):
+   - Runs tests on every push and pull request
+   - Builds the application
+   - Uploads the binary as an artifact
+
+2. **Lint** (`.github/workflows/lint.yml`):
+   - Runs golangci-lint to ensure code quality
+   - Checks for common issues and enforces style guidelines
+
+3. **Docker** (`.github/workflows/docker.yml`):
+   - Builds a Docker image on every push to main and on tags
+   - Pushes the image to GitHub Container Registry
+   - Tags images based on git tags and commits
+
+### Running Locally
+
+You can run the same checks locally before pushing:
+
+```bash
+# Run tests
+go test ./...
+
+# Run linter (requires golangci-lint)
+golangci-lint run
+
+# Build Docker image
+docker build -t log-ingestor .
+```
+
+### Docker Deployment
+
+To run the application using the Docker image from GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/[username]/log-ingestor:latest
+docker run -p 3000:3000 -e MONGODB_URI=mongodb://host.docker.internal:27017 ghcr.io/[username]/log-ingestor:latest
 ```
 
 ## API Endpoints

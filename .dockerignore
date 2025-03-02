@@ -1,0 +1,64 @@
+# Git
+.git
+.gitignore
+.github/
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+.dockerignore
+
+# Binaries
+log-ingestor
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Environment variables
+.env
+.env.*
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# MongoDB data directory
+/data/
+/mongodb/
+/mongo-data/
+
+# Log files
+*.log
+/logs/
+
+# Temporary files
+/tmp/
+/temp/
+
+# Build output
+/bin/
+/dist/
+/build/
+
+# Test coverage
+/coverage/
+coverage.txt
+profile.out
+
+# Documentation
+/docs/
+
+# Node modules (for UI)
+# We don't exclude node_modules because we need the built UI files
+# But we exclude unnecessary development files
+ui/node_modules/.cache/
+ui/node_modules/*/test/
+ui/node_modules/*/docs/ 
