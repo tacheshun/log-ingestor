@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Query Interface</title>
+    <link rel="stylesheet" href="/ui/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-search"></i> Log Query Interface</h1>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Full-text search...">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <button id="advanced-search-toggle" class="toggle-button">Advanced Filters <i class="fas fa-chevron-down"></i></button>
+        </div>
+
+        <div id="advanced-filters" class="advanced-filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="level">Level:</label>
+                    <select id="level">
+                        <option value="">All</option>
+                        <option value="error">Error</option>
+                        <option value="warning">Warning</option>
+                        <option value="info">Info</option>
+                        <option value="debug">Debug</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="resourceId">Resource ID:</label>
+                    <input type="text" id="resourceId" placeholder="e.g., server-1234">
+                </div>
+                <div class="filter-group">
+                    <label for="traceId">Trace ID:</label>
+                    <input type="text" id="traceId" placeholder="e.g., abc-xyz-123">
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="spanId">Span ID:</label>
+                    <input type="text" id="spanId" placeholder="e.g., span-456">
+                </div>
+                <div class="filter-group">
+                    <label for="commit">Commit:</label>
+                    <input type="text" id="commit" placeholder="e.g., 5e5342f">
+                </div>
+                <div class="filter-group">
+                    <label for="parentResourceId">Parent Resource ID:</label>
+                    <input type="text" id="parentResourceId" placeholder="e.g., server-0987">
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="startTime">Start Time:</label>
+                    <input type="datetime-local" id="startTime">
+                </div>
+                <div class="filter-group">
+                    <label for="endTime">End Time:</label>
+                    <input type="datetime-local" id="endTime">
+                </div>
+                <div class="filter-group">
+                    <label for="regex">Regex Pattern:</label>
+                    <input type="text" id="regex" placeholder="e.g., Failed.*">
+                </div>
+            </div>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="message">Message Contains:</label>
+                    <input type="text" id="message" placeholder="e.g., Failed to connect">
+                </div>
+                <div class="filter-group filter-buttons">
+                    <button id="apply-filters" class="primary-button">Apply Filters</button>
+                    <button id="clear-filters" class="secondary-button">Clear Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-container">
+            <div class="results-header">
+                <h2>Results <span id="result-count">(0)</span></h2>
+                <div class="pagination">
+                    <button id="prev-page" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                    <span id="page-info">Page 1</span>
+                    <button id="next-page" disabled>Next <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div id="results" class="results">
+                <div class="no-results">
+                    <i class="fas fa-search fa-3x"></i>
+                    <p>No logs found. Try adjusting your search criteria.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="log-details-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Log Details</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <pre id="log-json"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="/ui/script.js"></script>
+</body>
+</html> 
