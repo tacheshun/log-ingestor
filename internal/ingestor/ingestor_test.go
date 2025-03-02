@@ -82,7 +82,8 @@ func TestHandleLogIngestion(t *testing.T) {
 	}
 
 	// Verify the log was inserted into the mock database
-	logs, _ := mockDB.QueryLogs(nil, &models.LogQuery{})
+	ctx := context.Background()
+	logs, _ := mockDB.QueryLogs(ctx, &models.LogQuery{})
 	if len(logs) != 1 {
 		t.Errorf("Expected 1 log in the database, got %d", len(logs))
 	}
