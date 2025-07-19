@@ -136,11 +136,13 @@ func matchesQuery(log *models.Log, query *models.LogQuery) bool {
 	return true
 }
 
-// contains checks if a string contains a substring (case-sensitive)
+// contains checks if a string contains a substring (case-insensitive)
+// This better matches the behaviour of the MongoDB implementation,
+// which uses a case-insensitive regex when filtering by message.
 func contains(s, substr string) bool {
 	if substr == "" {
 		return true // Empty substring is always contained
 	}
 
-	return strings.Contains(s, substr)
+	return strings.Contains(strings.ToLower(s), strings.ToLower(substr))
 }

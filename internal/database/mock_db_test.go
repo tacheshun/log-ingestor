@@ -201,6 +201,7 @@ func TestContains(t *testing.T) {
 		expected bool
 	}{
 		{"Failed to connect to DB", "Failed", true},
+		{"Failed to connect to DB", "failed", true},
 		{"User authentication successful", "Failed", false},
 		{"Failed", "Failed", true},
 		{"", "Failed", false},
